@@ -1,0 +1,20 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.carousel .thumbs {
+    transition: all .15s ease-in;
+    transform: translate3d(0, 0, 0);
+    position: relative;
+    list-style: none;
+    white-space: nowrap;
+    display: flex;
+    justify-content: center;
+}
+.react-tabs__tab--selected {
+    background: #fff;
+    border-color: rgb(225, 204, 11) !important;
+    color: black;
+    border-radius: 5px 5px 0 0;
+
+}
