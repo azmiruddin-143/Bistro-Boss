@@ -7,6 +7,7 @@ import OurMenu from "./Pages/OurMenu";
 import OurShop from "./Pages/OurShop";
 import SignUp from "./Pages/SignUp";
 import SignIn from "./Pages/SignIn";
+import PrivateRoute from "./PrivateRoute/PrivateRoute";
 
 export const router = createBrowserRouter([
   {

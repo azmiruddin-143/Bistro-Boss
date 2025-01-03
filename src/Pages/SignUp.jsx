@@ -7,13 +7,20 @@ import { Link } from 'react-router-dom';
 const SignUp = () => {
 
     const { register, handleSubmit, formState: { errors }, } = useForm()
-    const {registerUser} = useContext(AuthContext)
+    const {registerUser, updateUserProfile} = useContext(AuthContext)
     const onSubmit = (data) => {
         console.log(data)
         registerUser(data.email,data.password)
         .then((result) =>{
            const logedUser = result.user
            console.log(logedUser);
+           updateUserProfile(data.name,data.photoURL)
+           .then(() =>{
+             console.log("user update");
+           })
+           .catch((error) =>{
+              console.log(error.message);
+           })
         })
     }
     return (
@@ -41,6 +48,13 @@ const SignUp = () => {
                             </label>
                             <input type="email" name='email' {...register("email", { required: true })} placeholder="Enter your email" className="input input-bordered" />
                             {errors.email && <span className='text-red-800 pt-3'>email is rewure</span>}
+                        </div>
+                        <div className="form-control">
+                            <label className="label">
+                                <span className="label-text">Photo URL</span>
+                            </label>
+                            <input type="url" name='photoURL' {...register("photoURL", { required: true })} placeholder="Enter your Photo Url" className="input input-bordered" />
+                            {errors.photoURL && <span className='text-red-800 pt-3'>Photois rewure</span>}
                         </div>
                         <div className="form-control">
                             <label className="label">

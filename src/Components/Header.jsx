@@ -2,10 +2,12 @@ import React from 'react';
 import { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../AuthProvider/AuthProvider';
-
+import { IoCartSharp } from "react-icons/io5";
+import useCart from '../Shared/useCart';
 const Header = () => {
 
   const { user, logout } = useContext(AuthContext)
+  const [cart] = useCart()
 
 
   return (
@@ -51,17 +53,28 @@ const Header = () => {
             {/* <Link to={'/'}>Contact Us</Link>
             <Link to={'/'}>Dashboard</Link> */}
             <Link to={'/ourmenu'}>our menu</Link>
-            <Link to={'/ourshop'}>our shop</Link>
+            
+              <Link to={'/ourshop'}>our shop</Link>
+            
+
+            <button className="flex gap-1">
+              <IoCartSharp size={20} />
+              <div className="badge badge-secondary">+{cart.length}</div>
+            </button>
           </ul>
-          
+
           {
-          !user ? <Link to={'signin'} className='pl-5'><button>SIGN IN</button></Link>
-            :
-            <button className='pl-5' onClick={logout} >LOGOUT</button>
-        }
+            !user ? <Link to={'signin'} className='pl-5'><button>SIGN IN</button></Link>
+              :
+              <button className='pl-5' onClick={logout} >LOGOUT</button>
+          }
+
+          {
+            user && <img className='w-8 rounded-full' src={user?.photoURL} alt="" />
+          }
         </div>
 
-      
+
         <Link to={'/signin'} className='navbar-end lg:hidden pr-10'><button>SIGN IN</button></Link>
 
       </div>
